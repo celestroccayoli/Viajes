@@ -1,0 +1,82 @@
+type Informacion @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  titulo: String
+  subtitulo: String
+  descripcion: String
+  Viaje: Viaje @hasOne
+}
+
+type Participante @model @auth(rules: [{allow: public}, {allow: groups, groups: ["admin"], operations: [read, create, update, delete]}, {allow: groups, groups: ["participantes"], operations: [read]}]) {
+  id: ID!
+  nombre: String
+  apellido: String
+  dni: String
+  email: AWSEmail
+  cargo: String
+  bio: String
+  imagen: String
+  imagen64: String
+  viajeID: ID! @index(name: "byViaje")
+  institucionID: ID! @index(name: "byInstitucion")
+}
+
+enum TipoInstitucion {
+  PUBLICO
+  PRIVADO
+  AMCHAM
+}
+
+type Institucion @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  nombre: String
+  Presentacions: [Participante] @hasMany(indexName: "byInstitucion", fields: ["id"])
+  viajeID: ID! @index(name: "byViaje")
+  tipo: TipoInstitucion
+  Participantes: [Participante] @hasMany(indexName: "byInstitucion", fields: ["id"])
+}
+
+type Actividad @model @auth(rules: [{allow: public}, {allow: groups, groups: ["admin"], operations: [read, create, update, delete]}, {allow: groups, groups: ["participantes"], operations: [read]}]) {
+  id: ID!
+  viajeID: ID! @index(name: "byViaje")
+  titulo: String
+  descripcion: String
+  fecha: AWSDate
+  horaInicio: AWSTime
+  horaFin: AWSTime
+  ubicacion: String
+  URLmapa: AWSURL
+  imagen: String
+}
+
+type Presentacion @model @auth(rules: [{allow: public}, {allow: groups, groups: ["participantes"], operations: [read]}, {allow: groups, groups: ["admin"], operations: [read, create, update, delete]}]) {
+  id: ID!
+  viajeID: ID! @index(name: "byViaje")
+  institucionID: ID! @index(name: "byInstitucion")
+  titulo: String
+  descripcion: String
+  archivo: String
+}
+
+type Hotel @model @auth(rules: [{allow: public}, {allow: groups, groups: ["admin"], operations: [read, create, update, delete]}, {allow: groups, groups: ["participantes"], operations: [read]}]) {
+  id: ID!
+  nombre: String
+  viajeID: ID! @index(name: "byViaje")
+  imagen: String
+  ubicacion: String
+  URLmapa: AWSURL
+}
+
+type Viaje @model @auth(rules: [{allow: public}, {allow: groups, groups: ["participantes"], operations: [read]}, {allow: groups, groups: ["admin"], operations: [read, create, update, delete]}]) {
+  id: ID!
+  titulo: String
+  Presentaciones: [Participante] @hasMany(indexName: "byViaje", fields: ["id"])
+  Hoteles: [Participante] @hasMany(indexName: "byViaje", fields: ["id"])
+  Actividades: [Participante] @hasMany(indexName: "byViaje", fields: ["id"])
+  Institucions: [Participante] @hasMany(indexName: "byViaje", fields: ["id"])
+  descripcion: String
+  fechaIda: AWSDate
+  fechaVuelta: AWSDate
+  activo: Boolean
+  Participantes: [Participante] @hasMany(indexName: "byViaje", fields: ["id"])
+}
+ 

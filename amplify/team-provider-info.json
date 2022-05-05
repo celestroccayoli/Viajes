@@ -1,0 +1,26 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amchamviajes-staging-133446-authRole",
+      "UnauthRoleArn": "arn:aws:iam::256477829216:role/amplify-amchamviajes-staging-133446-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::256477829216:role/amplify-amchamviajes-staging-133446-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-amchamviajes-staging-133446-deployment",
+      "UnauthRoleName": "amplify-amchamviajes-staging-133446-unauthRole",
+      "StackName": "amplify-amchamviajes-staging-133446",
+      "StackId": "arn:aws:cloudformation:us-east-1:256477829216:stack/amplify-amchamviajes-staging-133446/da2ab5e0-a076-11ec-af6f-0acc1e9bcf51",
+      "AmplifyAppId": "d3e8snlg5qyebr"
+    },
+    "categories": {
+      "function": {
+        "personasimagenes": {
+          "deploymentBucketName": "amplify-amchamviajes-staging-133446-deployment",
+          "s3Key": "amplify-builds/personasimagenes-3972305077355a587648-build.zip"
+        }
+      },
+      "auth": {
+        "amchamviajes": {}
+      }
+    }
+  }
+}

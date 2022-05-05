@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "api": {
+      "amchamviajes": [
+        "Query",
+        "Mutation"
+      ]
+    },
+    "storage": {
+      "s3appviajesstoragea0303568": [
+        "read"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

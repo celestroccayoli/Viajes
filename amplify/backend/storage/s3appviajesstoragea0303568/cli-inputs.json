@@ -1,0 +1,12 @@
+{
+  "resourceName": "s3appviajesstoragea0303568",
+  "bucketName": "appviajes-storage-a0303568",
+  "policyUUID": "5f7a8283",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ]
+}
